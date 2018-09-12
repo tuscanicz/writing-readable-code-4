@@ -1,0 +1,21 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_name: pehapkari-2
+    database_port: 3306
+    database_user: root
+    database_password: root
+    doctrine_entity_id_salt: ThisSaltIsNotSoSecretChangeIt
+    mailer_transport: sendmail
+    mailer_host: 127.0.0.1
+    mailer_port: 587
+    mailer_user: null
+    mailer_password: null
+    mailqueue.default_requeue_age: 24
+    mysql_user_provider: mysql_user_provider
+    secret: ThisTokenIsNotSoSecretChangeIt
+    security.interactive_login: security.interactive_login

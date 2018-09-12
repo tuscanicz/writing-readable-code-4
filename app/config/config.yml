@@ -1,0 +1,75 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# shared parameter values: valid across all environments
+parameters:
+    locale: cs
+    mailer_options: { sender: { order_saved: 'odesilatel@emailu.cz' } }
+
+framework:
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    translator: { fallbacks: ['en'] }
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+doctrine:
+    dbal:
+        driver:   '%database_driver%'
+        host:     '%database_host%'
+        port:     '%database_port%'
+        dbname:   '%database_name%'
+        user:     '%database_user%'
+        password: '%database_password%'
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collate: utf8mb4_unicode_ci
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            Wordgun:
+                type: annotation
+                prefix: AppBundle\
+                dir: '%kernel.root_dir%/../src/AppBundle'
+
+
+swiftmailer:
+    transport:  '%mailer_transport%'
+    host:       '%mailer_host%'
+    username:   '%mailer_user%'
+    password:   '%mailer_password%'
+    encryption: 'tls'
+    port:       587
+    source_ip:  '0.0.0.0'
+
+monolog:
+    handlers:
+        main:
+            level:      error
+            type:       stream
+            path:       '%kernel.logs_dir%/app.error.%kernel.environment%.log'

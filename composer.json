@@ -1,0 +1,63 @@
+{
+    "name": "tuscanicz/writing-readable-code-4",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "AppBundle\\": "src/"
+        },
+        "classmap": [
+            "src",
+            "app/AppKernel.php",
+            "app/AppCache.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "": ["tests/unit", "tests/integration"]
+        }
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "doctrine/doctrine-bundle": "^1.8",
+        "doctrine/orm": "^2.6",
+        "incenteev/composer-parameter-handler": "^2.1",
+        "jms/serializer-bundle": "^2.0",
+        "monolog/monolog": "^1.22",
+        "php-amqplib/php-amqplib": "^2.6",
+        "sensio/framework-extra-bundle": "^3.0",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/swiftmailer-bundle": "^3.0",
+        "symfony/symfony": "^3.3",
+        "tuscanicz/enum": "~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.2",
+        "phing/phing": "^2.16",
+        "phpstan/phpstan": "^0.7.0",
+        "jakub-onderka/php-var-dump-check": "^0.2.0",
+        "squizlabs/php_codesniffer": "^2.9",
+        "friendsofphp/php-cs-fixer": "^2.4"
+    },
+    "scripts": {
+        "ci": [
+            "@php -d max_execution_time=0 -d memory_limit=-1 bin/phing"
+        ],
+        "twig-lint": "@php bin/console lint:twig src app"
+    },
+    "config": {
+        "sort-packages": true,
+        "process-timeout": 0
+    },
+    "extra": {
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml",
+            "dist-file": "app/config/parameters.yml.dist"
+        }
+    },
+    "authors": [
+        {
+            "name": "Petr Bechyně",
+            "email": "mail@petrbechyne.com"
+        }
+    ]
+}
