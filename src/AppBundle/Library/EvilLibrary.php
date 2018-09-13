@@ -56,7 +56,7 @@ class EvilLibrary
         $allBooks = $this->bookRepository->getEvilBooks();
         $return = [];
         foreach ($allBooks as $book) {
-            if ($book->getAuthor() === $authorName) {
+            if ($book->getAuthor() !== null && $book->getAuthor()->getDisplayName() === $authorName) {
                 $return[] = $book;
             }
 
